@@ -1,3 +1,5 @@
+import copy
+
 class GameEngine:
     def __init__(self):
         self.board = [[None for i in range(3)] for i in range(3)]
@@ -7,7 +9,7 @@ class GameEngine:
 
     def changePlayer(self):
         if self.player == 'X':
-            self.player = '0'
+            self.player = 'O'
         else:
             self.player = 'X' 
 
@@ -19,15 +21,6 @@ class GameEngine:
             #self.changePlayer()
             return self.board
         return None
-
-    def nextState(self, row, col, player):
-        if (self.board[row][col] == None):
-            # makes a copy of the board 
-            copy = self.board[:]
-            # updates the copy with the given move
-            copy[row][col] = player
-            return copy
-        return self.board[:]
 
     def printBoard(self):
         print(self.board)
@@ -57,10 +50,51 @@ class GameEngine:
             minScoreIdx = scores.index(min(scores))
             self.nextMove = moves[minScoreIdx]
             return min(scores)
+           
 
+class AI:
     
-    # Returns the winning player if there is one. If there is a tie returns '-'. Otherwise None.
-    def checkGameOver(self, board):
+    def __init__(self):
+        self.nextMove = None
+    
+    def optimalNextMove(self, board):
+        self._optimalNextMove(board)
+        return self.nextMove
+
+    def _optimalNextMove(self, board, currentPlayer = 'O'):
+        if (self.isTerminalState(board)):
+            return self.score(board)
+
+        possibleMoves = self.getPossibleMoves(board)
+        scores = []
+        moves = []
+        currentPlayer = 'O' if currentPlayer == 'X' else 'X'
+        for move in possibleMoves:
+            possibleNewBoard = self.nextState(board, move, currentPlayer)
+            score = self._optimalNextMove(possibleNewBoard, currentPlayer)
+            moves.append(move)
+            scores.append(score)
+        
+        if currentPlayer == 'X':
+            maxScoreIdx = scores.index(max(scores))
+            self.nextMove = moves[maxScoreIdx]
+            return max(scores)
+        else: 
+            minScoreIdx = scores.index(min(scores))
+            self.nextMove = moves[minScoreIdx]
+            return min(scores)
+
+
+    def score(self, board):
+        winner = self.isTerminalState(board)
+        if winner == 'X':
+            return 10
+        elif winner == 'O':
+            return -10
+        elif winner == 'tie':
+            return 0
+
+    def isTerminalState(self, board):
         # check win on straigh lines
         for i in range(0,3): 
             # column
@@ -77,30 +111,46 @@ class GameEngine:
             return board[2][0]
 
         # Check if the game has ended in a tie. 
-        if self.getPossibleMoves == []:
-            return '-' 
+        if self.getPossibleMoves(board) == []:
+            return 'tie' 
 
         return None
 
-    def getPossibleMoves(self, board):
+    def getPossibleMoves(self, board): 
         possibleMoves = []
         for rowIdx, row in enumerate(board):
             for colIdx, column in enumerate(row):
                 if column == None:
                     possibleMoves.append((rowIdx, colIdx))
-                else:
-                    pass
-        return possibleMoves    
+        return possibleMoves 
+
+    def nextState(self, board, move, player):
+        if (board[move[0]][move[1]] == None):
+            # makes a copy of the board 
+            boardCopy = copy.deepcopy(board)
+            # updates the copy with the given move
+            boardCopy[move[0]][move[1]] = player
+            return boardCopy
+
+        # illagal move should, throw error or something.
+        # returns a copy of the board
+        return copy.deepcopy(board)
+
+    
 
 if __name__ == '__main__':
-    g = GameEngine()
-    g.printBoard()
-    g.makeMove(0,0,1)
-    g.makeMove(0,1,1)
+    #g = GameEngine()
+    #g.printBoard()
+    #g.makeMove(0,0,1)
+    #g.makeMove(0,1,1)
     #print(g.checkVictory(g.board, 0, 1))
-    g.makeMove(0,2,1)
+    #g.makeMove(0,2,1)
     #print(g.checkVictory(g.board, 0, 2))
-    print(g.getPossibleMoves(g.board))
-    g.printBoard()
+    #print(g.getPossibleMoves(g.board))
+    #g.printBoard()
     #print(g.minimax(g.board))
     print("Run")
+    ai = AI()
+    print(ai.optimalNextMove([['X', 'X', None],['O', 'X', 'O'], [None, None, None]]))
+    print(ai.optimalNextMove([['X', 'O', 'O'],[None, 'O', 'X'], [None, 'X', None]]))
+    print(ai.optimalNextMove([["X", "O", "O"], ["O","O", "X"],[None, None, "X"]]))

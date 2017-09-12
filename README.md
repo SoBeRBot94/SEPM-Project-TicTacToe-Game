@@ -10,7 +10,7 @@ A TicTacToe Game Engine Wirtten In Python
 
 * Vagrant
 
-* Any Hypervisor ( Virtualbox Preffered )
+* Any Hypervisor ( Virtualbox Preferred )
 
 ---
 ### Build The Development Environment

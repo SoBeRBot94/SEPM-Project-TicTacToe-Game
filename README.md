@@ -28,7 +28,7 @@ A TicTacToe Game Engine Wirtten In Python
 	vagrant up
 ```
 
-** The Vagrant Machine Will Be Provisioned By The Script Named Provision.sh **
+**The Vagrant Machine Will Be Provisioned By The Script Named Provision.sh**
 
 * SSH Into The Vagrant Machine
 
@@ -42,7 +42,7 @@ A TicTacToe Game Engine Wirtten In Python
 	cd /home/vagrant/TicTacToe/TicTacToe-GE
 ```
 
-** Develop Here **
+**Develop Here**
 
 * Remove The Devel Vagrant Machine
 
@@ -50,4 +50,4 @@ A TicTacToe Game Engine Wirtten In Python
 	vagrant destroy
 ```
 
-** Note: This Will Remove The Vagrant Machine & All The Files Associated With It **
+**Note: This Will Remove The Vagrant Machine & All The Files Associated With It**

@@ -25,7 +25,8 @@ A TicTacToe Game Engine Wirtten In Python
 
 ```bash
 	cd TicTacToe-GE
-	vagrant up
+
+	vagrant up --provider=virtaulbox
 ```
 
 **The Vagrant Machine Will Be Provisioned By The Script Named Provision.sh**

@@ -41,6 +41,14 @@ Clone_git_repo () {
 
 Clone_git_repo
 
+# Set Permissions & Owner
+
+Set_permissions_owner () {
+	sudo chown -R vagrant:vagrant $user/TicTacToe
+}
+
+Set_permissions_owner
+
 # Return Versions
 
 Return_ver () {

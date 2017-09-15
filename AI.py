@@ -23,30 +23,19 @@ class AIHard:
         if (self.isTerminalState(board)):
             return self.score(board)
         possibleMoves = self.getPossibleMoves(board)
-        scores = []
-        moves = []
-        #currentPlayer = 'O'
-        if currentPlayer == 'X':
-            currentPlayer = 'O'
-        else:
-            currentPlayer = 'X'
+        score = -1
         for move in possibleMoves:
-            possibleNewBoard = self.nextState(board, move, currentPlayer)
-            score = self._optimalNextMove(possibleNewBoard, currentPlayer)
-            moves.append(move)
-            scores.append(score)
-
-        if currentPlayer == 'X':
-            maxScoreIdx = scores.index(max(scores))
-            self.move = moves[maxScoreIdx]
-            return max(scores)
-        else:
-            minScoreIdx = scores.index(min(scores))
-            self.move = moves[minScoreIdx]
-            #print(moves[minScoreIdx])
-            return min(scores)
-            # self.nextMove = moves[minScoreIdx]
-            # return min(scores)
+            board[move[0]][move[1]] = currentPlayer
+            if currentPlayer == 'X':
+                currentPlayer = 'O'
+            else:
+                currentPlayer = 'X'
+            newScore = -self._optimalNextMove(board, currentPlayer)
+            if newScore > score:
+                score = newScore
+                self.move = move
+            board[move[0]][move[1]] = None
+            return score
 
     def score(self, board):
         winner = self.isTerminalState(board)
@@ -86,17 +75,3 @@ class AIHard:
                 if column == None:
                     possibleMoves.append((rowIdx, colIdx))
         return possibleMoves
-
-    def nextState(self, board, move, player):
-        if (board[move[0]][move[1]] == None):
-            # makes a copy of the board
-            boardCopy = copy.deepcopy(board)
-            # updates the copy with the given move
-            boardCopy[move[0]][move[1]] = player
-            return boardCopy
-
-        # illagal move should, throw error or something.
-        # returns a copy of the board
-        #Right now, illegal moves just return the same board
-        #Without throwing an error, this needs to be fixed.
-        return copy.deepcopy(boar)

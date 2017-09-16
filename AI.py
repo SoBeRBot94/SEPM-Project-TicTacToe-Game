@@ -1,10 +1,20 @@
 import copy
+from collections import Counter
+import random
 
 class AI(object):
     def __init__(self, difficulty):
         #self.nextMove = None
         if (difficulty.lower() == "hard"):
             self._AI = AIHard()
+        elif (difficulty.lower() == "medium"):
+            self._AI = AIMedium()
+        elif (difficulty.lower() == "easy"):
+            self._AI = AIEasy()
+        else:
+            raise ValueError(
+                'The difficulty of the AI is not one of the following: \
+                easy, medium or hard. The AI could not be initialized')
 
     def nextMove(self,board, currentPlayer):
         self._AI.nextMove(board, currentPlayer)
@@ -17,6 +27,7 @@ class AIHard:
         #return self.nextMove
 
     def getMove(self):
+        #print(self.move)
         return self.move
 
     def _optimalNextMove(self, board, currentPlayer):
@@ -75,3 +86,75 @@ class AIHard:
                 if column == None:
                     possibleMoves.append((rowIdx, colIdx))
         return possibleMoves
+
+class AIMedium:
+
+    def nextMove(self, board, currentPlayer):
+        self._nextMove(board, currentPlayer)
+
+    def getMove(self):
+        return self.move
+
+    def _nextMove(self, board, currentPlayer):
+        for rowIdx, row in enumerate(board):
+            if 2 in Counter(row).values() and Counter(row)[None] == 1:
+                colIdx = row.index(None)
+                self.move = (rowIdx, colIdx)
+                return
+
+        for colIdx, col in enumerate(list(zip(*board))):
+            if 2 in Counter(col).values() and Counter(col)[None] == 1:
+                rowIdx = col.index(None)
+                self.move = (rowIdx, colIdx)
+                return
+
+        diagonal1 = [board[0][0], board[1][1], board[2][2]]
+        if 2 in Counter(diagonal1).values() and Counter(diagonal1)[None] == 1:
+            idx = diagonal1.index(None)
+            self.move = (idx, idx)
+            return
+
+        diagonal2 = [board[2][0], board[1][1], board[0][2]]
+        if 2 in Counter(diagonal2).values() and Counter(diagonal2)[None] == 1:
+            idx = diagonal2.index(None)
+            if idx == 0:
+                self.move = (2, idx)
+            elif idx == 1:
+                self.move = (idx, idx)
+            elif idx == 2:
+                self.move = (0, idx)
+            return
+
+        possibleMoves = self.getPossibleMoves(board)
+        self.move = random.choice(possibleMoves)
+
+
+    def getPossibleMoves(self, board):
+        possibleMoves = []
+        for rowIdx, row in enumerate(board):
+            for colIdx, column in enumerate(row):
+                if column == None:
+                    possibleMoves.append((rowIdx, colIdx))
+        return possibleMoves
+
+class AIEasy:
+
+    def nextMove(self, board, currentPlayer):
+        self._nextMove(board, currentPlayer)
+
+    def getMove(self):
+        return self.move
+
+    def _nextMove(self, board, currentPlayer):
+        possibleMoves = self.getPossibleMoves(board)
+        self.move = random.choice(possibleMoves)
+
+    def getPossibleMoves(self, board):
+        possibleMoves = []
+        for rowIdx, row in enumerate(board):
+            for colIdx, column in enumerate(row):
+                if column == None:
+                    possibleMoves.append((rowIdx, colIdx))
+        return possibleMoves
+
+

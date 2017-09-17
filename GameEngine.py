@@ -74,3 +74,24 @@ class GameEngine:
         self.player = 'X'
         self.nextMove = None
 
+    def getResult(self, board):
+        """
+        :param board: The 3x3 board from GameEngine.
+        :type board: List[List[int]]
+        :returns: The result from the board with the values being either 'X', 'O', or tie
+        :rtype: String
+        """
+        for i in range(0,3):
+            if board[0][i] == board[1][i] == board[2][i]:
+                return board[0][i]
+
+            if board[i][0] == board[i][1] == board[i][2]:
+                return board[0][i]
+
+        if board[0][0] == board[1][1] == board[2][2]:
+            return board[0][0]
+        if board[2][0] == board[1][1] == board[0][2]:
+            return board[2][0]
+
+        return 'tie'
+

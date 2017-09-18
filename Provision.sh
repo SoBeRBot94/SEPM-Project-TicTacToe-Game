@@ -4,6 +4,7 @@ echo -e "Building The TicTacToe Vagrant Machine \n PLEASE WAIT ..."
 # Variables
 user=/home/vagrant
 git_repo_url=https://github.com/SoBeRBot94/TicTacToe-GE.git
+vs_code_url=https://az764295.vo.msecnd.net/insider/b0c0634339c6f64a5c7f08b56fe732fb9154d3c4/code-insiders_1.17.0-1505452681_amd64.deb
 
 # Install Requirements
 
@@ -13,17 +14,36 @@ Install_py () {
 	sudo add-apt-repository ppa:jonathonf/python-3.6 -y
 	sudo apt-get update -y
 	sudo apt-get install python3.6 -y
+	sudo apt-get install ipython ipython3 -y
+	sudo apt-get install python-virtualenv -y
+	pip install ipython
 }
 
 Install_py
 
 # Git
 
-Install_git () {
+Install_requirements () {
+	# Git
 	sudo apt-get install git -y
+
+	# Atom
+	sudo add-apt-repository ppa:webupd8team/atom -y
+	sudo apt-get update -y
+	sudo apt-get install atom -y
+
+	# Sublime Text
+	sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y
+	sudo apt-get update -y
+	sudo apt-get install sublime-text-installer -y
+
+	# Visual Studio Code
+	mkdir /home/vagrant/temp
+	wget --output-document=$user/temp/visual-studio-code.deb $vs_code_url
+	sudo dpkg -i $user/temp/visual-studio-code.deb
 }
 
-Install_git
+Install_requirements
 
 # Setup The Build Environmnet
 

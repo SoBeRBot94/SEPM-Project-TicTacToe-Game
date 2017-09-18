@@ -45,6 +45,12 @@ A TicTacToe Game Engine Wirtten In Python
 
 **Develop Here**
 
+* Shutdown The Devel Vagrant Machine
+
+```bash
+	vagrant halt
+```
+
 * Remove The Devel Vagrant Machine
 
 ```bash

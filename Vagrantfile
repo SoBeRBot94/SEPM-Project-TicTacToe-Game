@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
 # Base Image From Vagrant Cloud
-	config.vm.box = "ubuntu/trusty64"
+	config.vm.box = "box-cutter/ubuntu1404-desktop"
 
 # Define Vagrant Machine
 	config.vm.define :TicTacToe do |t|

@@ -201,7 +201,7 @@ class _AIMedium:
             return
 
         possibleMoves = self.getPossibleMoves(board)
-        self.move = random.choice(possibleMoves)
+        self.move = random.SystemRandom().choice(possibleMoves)
 
 
     def getPossibleMoves(self, board):
@@ -248,7 +248,7 @@ class _AIEasy:
             placement at random. The move is then saved to self.
         """
         possibleMoves = self.getPossibleMoves(board)
-        self.move = random.choice(possibleMoves)
+        self.move = random.SystemRandom().choice(possibleMoves)
 
     def getPossibleMoves(self, board):
         """

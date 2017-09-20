@@ -17,7 +17,9 @@ class GameEngine:
 
     def changePlayer(self):
         """
-        .. note:: Changes the current player that is to play on the board. Saves it to self.
+
+        Changes the current player that is to play on the board. Saves it to self.
+
         """
         if self.player == 'X':
             self.player = 'O'
@@ -68,7 +70,9 @@ class GameEngine:
 
     def resetBoard(self):
         """
-        .. note:: Resets the board for a new game.
+
+        Resets the board for a new game.
+
         """
         self.board = [[None for i in range(3)] for i in range(3)]
         self.player = 'X'

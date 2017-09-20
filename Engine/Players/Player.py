@@ -24,9 +24,11 @@ class Player(object):
 
     def nextMove(self, board, currentPlayer):
         """
+
         Runs the method nextMove for the class which was initialized.
+
         :param board: The 3x3 board from GameEngine
         :param currentPlayer: The player who is making the next move (X or O)
-        :return : tuple with the row and column for the next move. On the form of (rowIdx, colIdx)
+        :returns: tuple with the row and column for the next move. On the form of (rowIdx, colIdx)
         """
         return self._Player.nextMove(board, currentPlayer)

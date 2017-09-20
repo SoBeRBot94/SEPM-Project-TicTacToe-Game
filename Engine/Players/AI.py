@@ -24,7 +24,9 @@ class _AI(object):
 
     def nextMove(self,board, currentPlayer):
         """
+
         Runs the method nextMove for the class which was initialized.
+        
         :param board: The 3x3 board from GameEngine. On the form of List[List,List,List]
         :param currentPlayer: The player who is making the next move (X or O)
         :returns: The row and column for the next move. On the form of (rowIdx, colIdx)
@@ -41,7 +43,9 @@ class _AIHard:
 
     def nextMove(self, board, currentPlayer):
         """
+
         Finds the next move for the AI.
+        
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[int]]
@@ -52,7 +56,9 @@ class _AIHard:
 
     def getMove(self):
         """
+
         Returns the value stored in self.move which is the next chosen move for the AI.
+        
         :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
         :rtype: tuple
         """
@@ -60,7 +66,9 @@ class _AIHard:
 
     def _optimalNextMove(self, board, currentPlayer):
         """
+        
         Minimax algorithm to find the optimal move for the AI.
+        
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[int]]
@@ -89,7 +97,9 @@ class _AIHard:
 
     def score(self, board):
         """
+
         The score to be retrieved for the minimax algorithm.
+        
         :param board: The 3x3 board from GameEngine.
         :type board: List[List[int]]
         :returns: The score used for the minimax algorithm
@@ -143,7 +153,9 @@ class _AIMedium:
 
     def nextMove(self, board, currentPlayer):
         """
+
         Finds the next move for the AI.
+        
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[int]]
@@ -153,7 +165,9 @@ class _AIMedium:
 
     def getMove(self):
         """
+
         Returns the value stored in self.move which is the next chosen move for the AI.
+        
         :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
         :rtype: tuple
         """
@@ -222,7 +236,9 @@ class _AIEasy:
 
     def nextMove(self, board, currentPlayer):
         """
+
         Finds the next move for the AI.
+
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[int]]
@@ -232,7 +248,9 @@ class _AIEasy:
 
     def getMove(self):
         """
+
         Returns the value stored in self.move which is the next chosen move for the AI.
+
         :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
         :rtype: tuple
         """

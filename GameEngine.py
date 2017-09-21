@@ -1,4 +1,6 @@
 import copy
+import sys
+import ast 
 
 class GameEngine:
     def __init__(self):
@@ -23,7 +25,11 @@ class GameEngine:
         return None
 
     def printBoard(self):
-        print(self.board)
+        print('-----------')
+        print(self.board[0])
+        print(self.board[1])
+        print(self.board[2])
+        print('-----------')
         
     def minimax(self, board):
         # if the game has reached a terminal state
@@ -57,14 +63,20 @@ class AI:
     def __init__(self):
         self.nextMove = None
     
-    def optimalNextMove(self, board):
-        self._optimalNextMove(board)
+    def emptyBoard(self):
+        return [[None, None, None], [None, None, None], [None, None, None]]
+
+    def optimalNextMove(self, board, currentPlayer = 'X'):
+        currentPlayer = 'O' if currentPlayer == 'X' else 'X'
+        self._optimalNextMove(board, currentPlayer)
         return self.nextMove
 
-    def _optimalNextMove(self, board, currentPlayer = 'O'):
+    def _optimalNextMove(self, board, currentPlayer):
         if (self.isTerminalState(board)):
             return self.score(board)
-
+        if (board == self.emptyBoard()):
+            self.nextMove = (0,0)
+            return 
         possibleMoves = self.getPossibleMoves(board)
         scores = []
         moves = []
@@ -136,7 +148,7 @@ class AI:
         # returns a copy of the board
         return copy.deepcopy(board)
 
-    
+
 
 if __name__ == '__main__':
     #g = GameEngine()
@@ -151,6 +163,23 @@ if __name__ == '__main__':
     #print(g.minimax(g.board))
     print("Run")
     ai = AI()
-    print(ai.optimalNextMove([['X', 'X', None],['O', 'X', 'O'], [None, None, None]]))
-    print(ai.optimalNextMove([['X', 'O', 'O'],[None, 'O', 'X'], [None, 'X', None]]))
-    print(ai.optimalNextMove([["X", "O", "O"], ["O","O", "X"],[None, None, "X"]]))
+    ga = GameEngine()
+    currentPlayer = 'X'
+    #while not (ai.isTerminalState(ga.board)): 
+    #    m1 = ai.optimalNextMove(ga.board, currentPlayer)
+    #    ga.makeMove(m1[0], m1[1], currentPlayer)
+    #    currentPlayer = 'O' if currentPlayer == 'X' else 'X'
+    #    print(ga.board)
+    while not (ai.isTerminalState(ga.board)):
+        if (currentPlayer == 'O'): 
+            m1 = ai.optimalNextMove(ga.board, currentPlayer)
+            ga.makeMove(m1[0], m1[1], currentPlayer)
+        else: 
+            m2 = ast.literal_eval(input("nästa drag: "))
+            ga.makeMove(m2[0], m2[1], currentPlayer)
+        ga.printBoard()
+        currentPlayer = 'O' if currentPlayer == 'X' else 'X'
+    #    print(ga.board)
+    #print(ai.optimalNextMove([['X', 'X', None],['O', 'X', 'O'], [None, None, None]]))
+    #print(ai.optimalNextMove([['X', 'O', 'O'],[None, 'O', 'X'], [None, 'X', None]]))
+    #print(ai.optimalNextMove([["X", "O", "O"], ["O","O", "X"],[None, None, "X"]]))

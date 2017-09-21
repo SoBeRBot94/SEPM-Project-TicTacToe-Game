@@ -51,6 +51,7 @@ class _AIHard:
         :type board: List[List[int]]
         :type currentPlayer: String
         """
+        currentPlayer = 'O' if currentPlayer == 'X' else 'X'
         self._optimalNextMove(board, currentPlayer)
 
 
@@ -64,11 +65,14 @@ class _AIHard:
         """
         return self.move
 
+    def emptyBoard(self):
+        return [[None, None, None], [None, None, None], [None, None, None]]
+
     def _optimalNextMove(self, board, currentPlayer):
         """
-        
+
         Minimax algorithm to find the optimal move for the AI.
-        
+
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[int]]
@@ -80,20 +84,27 @@ class _AIHard:
         """
         if (self.isTerminalState(board)):
             return self.score(board)
+        if (board == self.emptyBoard()):
+            self.nextMove = (0, 0)
+            return
         possibleMoves = self.getPossibleMoves(board)
-        score = -1
+        scores = []
+        moves = []
+        currentPlayer = 'O' if currentPlayer == 'X' else 'X'
         for move in possibleMoves:
-            board[move[0]][move[1]] = currentPlayer
-            if currentPlayer == 'X':
-                currentPlayer = 'O'
-            else:
-                currentPlayer = 'X'
-            newScore = -self._optimalNextMove(board, currentPlayer)
-            if newScore > score:
-                score = newScore
-                self.move = move
-            board[move[0]][move[1]] = None
-            return score
+            possibleNewBoard = self.nextState(board, move, currentPlayer)
+            score = self._optimalNextMove(possibleNewBoard, currentPlayer)
+            moves.append(move)
+            scores.append(score)
+
+        if currentPlayer == 'X':
+            maxScoreIdx = scores.index(max(scores))
+            self.nextMove = moves[maxScoreIdx]
+            return max(scores)
+        else:
+            minScoreIdx = scores.index(min(scores))
+            self.nextMove = moves[minScoreIdx]
+            return min(scores)
 
     def score(self, board):
         """
@@ -148,6 +159,21 @@ class _AIHard:
                 if column == None:
                     possibleMoves.append((rowIdx, colIdx))
         return possibleMoves
+
+    def nextState(self, board, move, player):
+        if (board[move[0]][move[1]] == None):
+            # makes a copy of the board
+            boardCopy = copy.deepcopy(board)
+            # updates the copy with the given move
+            boardCopy[move[0]][move[1]] = player
+            return boardCopy
+
+         # illagal move should, throw error or something.
+        # returns a copy of the board
+        return copy.deepcopy(board)
+
+    Add
+    Comment
 
 class _AIMedium:
 

@@ -1,6 +1,5 @@
 import ast
 
-
 class _User:
     """
     Class which is used by the human player. Shouldn't be called directly, instead, call it via the class Player.
@@ -31,7 +30,7 @@ class _User:
     def _nextMove(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         .. note:: Waits for input from the User regarding the next move. It then checks if the move is
             a valid one. If it is, the move is saved to self, but if the move isn't valid, a ValueError is raised.
         """
@@ -45,7 +44,7 @@ class _User:
     def getPossibleMoves(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The possible moves left on the board.
         :rtype: List[tuple]
         """

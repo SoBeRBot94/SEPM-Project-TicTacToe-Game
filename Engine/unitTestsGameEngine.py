@@ -1,11 +1,13 @@
 import unittest
 from GameEngine import GameEngine
+from Players.AI import _AI
 
 class firstCase(unittest.TestCase):
 
     def setUp(self):
         self.GameEngine = GameEngine()
-
+        self.ai = _AI('hard')
+        
 
     def testIsFinished1(self):
         board = [[None,None,None],[None,None,None],[None,None,None]]

@@ -3,10 +3,10 @@ class GameEngine:
     When initializing GameEngine, a board 3x3 board is filled with the values of None. The first player
     is always player 'X', whilst the second player is always the player 'O'.
     """
-    def __init__(self):
+    def __init__(self, startingPlayer):
         self.board = [[None for i in range(3)] for i in range(3)]
-        self.player = 'X'
-        self.nextMove = None
+        self.player = startingPlayer
+        
 
     def getPlayer(self):
         """

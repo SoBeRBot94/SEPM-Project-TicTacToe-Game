@@ -66,12 +66,17 @@ class _AIHard:
         return self.move
 
     def emptyBoard(self):
+        """
+            Creates an empty board.
+            :returns: an empty board
+            :rtype: [[String]]
+        """
         return [[None, None, None], [None, None, None], [None, None, None]]
 
     def _optimalNextMove(self, board, currentPlayer):
         """
 
-        Minimax algorithm to find the optimal move for the AI.
+        Minimax algorithm to find the optimal move for the AI. 
 
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')

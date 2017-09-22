@@ -48,7 +48,7 @@ class _AIHard:
         
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :type currentPlayer: String
         """
         currentPlayer = 'O' if currentPlayer == 'X' else 'X'
@@ -80,7 +80,7 @@ class _AIHard:
 
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :type currentPlayer: String
         :returns: The optimal score retrieved through the use of the minimax algorithm
         :rtype: int
@@ -117,7 +117,7 @@ class _AIHard:
         The score to be retrieved for the minimax algorithm.
         
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The score used for the minimax algorithm
         :rtype: int
         """
@@ -132,7 +132,7 @@ class _AIHard:
     def isTerminalState(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The state of the current board.
         """
         for i in range(0, 3):
@@ -154,7 +154,7 @@ class _AIHard:
     def getPossibleMoves(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The possible moves left on the board.
         :rtype: List[tuple]
         """
@@ -166,6 +166,18 @@ class _AIHard:
         return possibleMoves
 
     def nextState(self, board, move, player):
+        """
+        Creates a copy of the given board with the given move of the given player added.
+
+        :param board: The 3x3 board from GameEngine.
+        :type board: List[List[String]]
+        :param move: The move to be made. 
+        :type move: (row, column)
+        :param player: The player making the move.
+        :type player: String
+        :returns: A copy of the given board with the given move of the given player added.
+        :rtype: List[List[String]]
+        """
         if (board[move[0]][move[1]] == None):
             # makes a copy of the board
             boardCopy = copy.deepcopy(board)
@@ -189,7 +201,7 @@ class _AIMedium:
         
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :type currentPlayer: String
         """
         self._nextMove(board, currentPlayer)
@@ -208,7 +220,7 @@ class _AIMedium:
         """
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: Return is empty as it is used instead of a break.
         :rtype: NoneType
         .. note:: The algorithm for the medium level AI is the following:
@@ -252,7 +264,7 @@ class _AIMedium:
     def getPossibleMoves(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The possible moves left on the board.
         :rtype: List[tuple]
         """
@@ -272,7 +284,7 @@ class _AIEasy:
 
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :type currentPlayer: String
         """
         self._nextMove(board, currentPlayer)
@@ -291,7 +303,7 @@ class _AIEasy:
         """
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :type currentPlayer: String
         .. note:: The easy algorithm retrieves all the possible moves on the board and then chooses the next
             placement at random. The move is then saved to self.
@@ -302,7 +314,7 @@ class _AIEasy:
     def getPossibleMoves(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The possible moves left on the board.
         :rtype: List[tuple]
         """

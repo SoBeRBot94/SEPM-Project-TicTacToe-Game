@@ -29,7 +29,7 @@ class GameEngine:
     def getBoard(self):
         """
         :returns: The current board.
-        :rtype: List[List[int]]
+        :rtype: List[List[String]]
         """
         return self.board
 
@@ -50,7 +50,7 @@ class GameEngine:
     def isFinished(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: A boolean stating if the game is finished or if there are still moves left to be placed.
         :rtype: Boolean
         """
@@ -81,7 +81,7 @@ class GameEngine:
     def getResult(self, board):
         """
         :param board: The 3x3 board from GameEngine.
-        :type board: List[List[int]]
+        :type board: List[List[String]]
         :returns: The result from the board with the values being either 'X', 'O', or tie
         :rtype: String
         """

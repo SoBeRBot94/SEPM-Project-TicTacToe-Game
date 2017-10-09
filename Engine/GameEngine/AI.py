@@ -2,14 +2,16 @@ import copy
 from collections import Counter
 import random
 
+
 class _AI(object):
     """Class which is used to initialize an AI type of player. Shouldn't be called directly, instead,
     call it via the class Player. The class _AI, which receives the difficulty parameter from the initialization
     of the Player class, uses it to be able to initialize the correct difficulty of the AI.
     If the difficulty parameter isn't one of the following: hard, medium or easy, a ValueError is raised
     notifying the client of this."""
+
     def __init__(self, difficulty):
-        #self.nextMove = None
+        # self.move = None
         if (difficulty.lower() == "hard"):
             self._AI = _AIHard()
         elif (difficulty.lower() == "medium"):
@@ -21,12 +23,11 @@ class _AI(object):
                 'The difficulty of the AI is not one of the following: \
                 easy, medium or hard. The AI could not be initialized')
 
-
-    def nextMove(self,board, currentPlayer):
+    def nextMove(self, board, currentPlayer):
         """
 
         Runs the method nextMove for the class which was initialized.
-        
+
         :param board: The 3x3 board from GameEngine. On the form of List[List,List,List]
         :param currentPlayer: The player who is making the next move (X or O)
         :returns: The row and column for the next move. On the form of (rowIdx, colIdx)
@@ -34,6 +35,7 @@ class _AI(object):
         """
         self._AI.nextMove(board, currentPlayer)
         return self._AI.getMove()
+
 
 class _AIHard:
     """
@@ -45,7 +47,7 @@ class _AIHard:
         """
 
         Finds the next move for the AI.
-        
+
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[String]]
@@ -54,12 +56,11 @@ class _AIHard:
         currentPlayer = 'O' if currentPlayer == 'X' else 'X'
         self._optimalNextMove(board, currentPlayer)
 
-
     def getMove(self):
         """
 
         Returns the value stored in self.move which is the next chosen move for the AI.
-        
+
         :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
         :rtype: tuple
         """
@@ -76,7 +77,7 @@ class _AIHard:
     def _optimalNextMove(self, board, currentPlayer):
         """
 
-        Minimax algorithm to find the optimal move for the AI. 
+        Minimax algorithm to find the optimal move for the AI.
 
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
@@ -90,7 +91,7 @@ class _AIHard:
         if (self.isTerminalState(board)):
             return self.score(board)
         if (board == self.emptyBoard()):
-            self.nextMove = (0, 0)
+            self.move = (0, 0)
             return
         possibleMoves = self.getPossibleMoves(board)
         scores = []
@@ -104,18 +105,18 @@ class _AIHard:
 
         if currentPlayer == 'X':
             maxScoreIdx = scores.index(max(scores))
-            self.nextMove = moves[maxScoreIdx]
+            self.move = moves[maxScoreIdx]
             return max(scores)
         else:
             minScoreIdx = scores.index(min(scores))
-            self.nextMove = moves[minScoreIdx]
+            self.move = moves[minScoreIdx]
             return min(scores)
 
     def score(self, board):
         """
 
         The score to be retrieved for the minimax algorithm.
-        
+
         :param board: The 3x3 board from GameEngine.
         :type board: List[List[String]]
         :returns: The score used for the minimax algorithm
@@ -171,7 +172,7 @@ class _AIHard:
 
         :param board: The 3x3 board from GameEngine.
         :type board: List[List[String]]
-        :param move: The move to be made. 
+        :param move: The move to be made.
         :type move: (row, column)
         :param player: The player making the move.
         :type player: String
@@ -185,20 +186,16 @@ class _AIHard:
             boardCopy[move[0]][move[1]] = player
             return boardCopy
 
-         # illagal move should, throw error or something.
+            # illagal move should, throw error or something.
         # returns a copy of the board
         return copy.deepcopy(board)
 
-    Add
-    Comment
-
 class _AIMedium:
-
     def nextMove(self, board, currentPlayer):
         """
 
         Finds the next move for the AI.
-        
+
         :param board: The 3x3 board from GameEngine.
         :param currentPlayer: The player who is making the next move ('X' or 'O')
         :type board: List[List[String]]
@@ -210,7 +207,7 @@ class _AIMedium:
         """
 
         Returns the value stored in self.move which is the next chosen move for the AI.
-        
+
         :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
         :rtype: tuple
         """
@@ -260,7 +257,6 @@ class _AIMedium:
         possibleMoves = self.getPossibleMoves(board)
         self.move = random.SystemRandom().choice(possibleMoves)
 
-
     def getPossibleMoves(self, board):
         """
         :param board: The 3x3 board from GameEngine.
@@ -275,8 +271,8 @@ class _AIMedium:
                     possibleMoves.append((rowIdx, colIdx))
         return possibleMoves
 
-class _AIEasy:
 
+class _AIEasy:
     def nextMove(self, board, currentPlayer):
         """
 

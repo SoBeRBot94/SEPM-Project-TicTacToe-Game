@@ -58,3 +58,35 @@ A TicTacToe Game Engine Wirtten In Python
 ```
 
 **Note: This Will Remove The Vagrant Machine & All The Files Associated With It**
+
+---
+
+## Play TicTacToe
+
+### Requirements
+
+* Git
+
+* Docker
+
+### Work With Docker
+
+* Clone The Git Repository
+
+```bash
+	git clone https://github.com/SoBeRBot94/TicTacToe-GE.git
+```
+
+* Build The Image
+
+```bash
+	docker build --tag tictactoe:final ./
+```
+
+* Run The Container With STDIN Enabled
+
+```bash
+	docker run -i tictactoe:final
+```
+
+**Enjoy Your Game**

@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to TicTacToe-GE’s documentation! &mdash; TicTacToe-GE 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TicTacToe-GE 0.1 documentation" href="#" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-tictactoe-ge-s-documentation">
+<h1>Welcome to TicTacToe-GE&#8217;s documentation!<a class="headerlink" href="#welcome-to-tictactoe-ge-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-GameEngine"></span><dl class="class">
+<dt id="GameEngine.GameEngine">
+<em class="property">class </em><code class="descclassname">GameEngine.</code><code class="descname">GameEngine</code><a class="headerlink" href="#GameEngine.GameEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>When initializing GameEngine, a board 3x3 board is filled with the values of None. The first player
+is always player &#8216;X&#8217;, whilst the second player is always the player &#8216;O&#8217;.</p>
+<dl class="method">
+<dt id="GameEngine.GameEngine.changePlayer">
+<code class="descname">changePlayer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.changePlayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the current player that is to play on the board. Saves it to self.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.getBoard">
+<code class="descname">getBoard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.getBoard" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The current board.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List[List[int]]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.getPlayer">
+<code class="descname">getPlayer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.getPlayer" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The player whose turn it is - &#8216;X&#8217; or &#8216;O&#8217;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.getResult">
+<code class="descname">getResult</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.getResult" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The result from the board with the values being either &#8216;X&#8217;, &#8216;O&#8217;, or tie</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.isFinished">
+<code class="descname">isFinished</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.isFinished" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A boolean stating if the game is finished or if there are still moves left to be placed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.resetBoard">
+<code class="descname">resetBoard</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.resetBoard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the board for a new game.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameEngine.GameEngine.updateBoard">
+<code class="descname">updateBoard</code><span class="sig-paren">(</span><em>player</em>, <em>move</em><span class="sig-paren">)</span><a class="headerlink" href="#GameEngine.GameEngine.updateBoard" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>player</strong> (<em>String</em>) &#8211; The player that is making a move.</li>
+<li><strong>move</strong> (<em>tuple</em>) &#8211; The move that the player has chosen to play.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Nothing. The updated board is saved in self.board.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Raises a ValueError if the move is invalid.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Player"></span><dl class="class">
+<dt id="Player.Player">
+<em class="property">class </em><code class="descclassname">Player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>typePlayer</em>, <em>difficulty='default'</em><span class="sig-paren">)</span><a class="headerlink" href="#Player.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The class which controls if it&#8217;s a human player or an AI.
+Can take two parameters as input, where the type of the player (AI or user) is mandatory
+A second parameter, difficulty, is not needed when initializing a user type of player
+but it is mandatory when initializing a AI. If trying to initialize an AI without the difficulty
+parameter, a ValueError is raised from the _AI class. If trying to initialize the Player class
+without specifying that the player is a &#8216;ai&#8217; or a &#8216;user&#8217;, a ValueError is raised notifying the client of this.
+The only public facing method which is used by the client is nextMove.</p>
+<dl class="method">
+<dt id="Player.Player.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#Player.Player.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the method nextMove for the class which was initialized.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>board</strong> &#8211; The 3x3 board from GameEngine</li>
+<li><strong>currentPlayer</strong> &#8211; The player who is making the next move (X or O)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple with the row and column for the next move. On the form of (rowIdx, colIdx)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Player._User">
+<em class="property">class </em><code class="descclassname">Player.</code><code class="descname">_User</code><a class="headerlink" href="#Player._User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class which is used by the human player. Shouldn&#8217;t be called directly, instead, call it via the class Player.</p>
+<dl class="method">
+<dt id="Player._User.getMove">
+<code class="descname">getMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Player._User.getMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value stored in self.move which is the next chosen move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The with the row and column for the next move. On the form of (rowIdx, colIdx)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Player._User.getPossibleMoves">
+<code class="descname">getPossibleMoves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#Player._User.getPossibleMoves" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The possible moves left on the board.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[tuple]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Player._User.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#Player._User.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the method nextMove for the class which was initialized.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>board</strong> &#8211; The 3x3 board from GameEngine. On the form of List[List,List,List]</li>
+<li><strong>currentPlayer</strong> &#8211; The player who is making the next move (X or O)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The row and column for the next move. On the form of (rowIdx, colIdx)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-AI"></span><dl class="class">
+<dt id="AI._AI">
+<em class="property">class </em><code class="descclassname">AI.</code><code class="descname">_AI</code><span class="sig-paren">(</span><em>difficulty</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class which is used to initialize an AI type of player. Shouldn&#8217;t be called directly, instead,
+call it via the class Player. The class _AI, which receives the difficulty parameter from the initialization
+of the Player class, uses it to be able to initialize the correct difficulty of the AI.
+If the difficulty parameter isn&#8217;t one of the following: hard, medium or easy, a ValueError is raised
+notifying the client of this.</p>
+<dl class="method">
+<dt id="AI._AI.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AI.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the method nextMove for the class which was initialized.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>board</strong> &#8211; The 3x3 board from GameEngine. On the form of List[List,List,List]</li>
+<li><strong>currentPlayer</strong> &#8211; The player who is making the next move (X or O)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The row and column for the next move. On the form of (rowIdx, colIdx)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AI._AIEasy">
+<em class="property">class </em><code class="descclassname">AI.</code><code class="descname">_AIEasy</code><a class="headerlink" href="#AI._AIEasy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="AI._AIEasy.getMove">
+<code class="descname">getMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIEasy.getMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value stored in self.move which is the next chosen move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The with the row and column for the next move. On the form of (rowIdx, colIdx)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIEasy.getPossibleMoves">
+<code class="descname">getPossibleMoves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIEasy.getPossibleMoves" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The possible moves left on the board.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[tuple]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIEasy.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIEasy.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the next move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</li>
+<li><strong>currentPlayer</strong> (<em>String</em>) &#8211; The player who is making the next move (&#8216;X&#8217; or &#8216;O&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AI._AIMedium">
+<em class="property">class </em><code class="descclassname">AI.</code><code class="descname">_AIMedium</code><a class="headerlink" href="#AI._AIMedium" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="AI._AIMedium.getMove">
+<code class="descname">getMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIMedium.getMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value stored in self.move which is the next chosen move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The with the row and column for the next move. On the form of (rowIdx, colIdx)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIMedium.getPossibleMoves">
+<code class="descname">getPossibleMoves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIMedium.getPossibleMoves" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The possible moves left on the board.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[tuple]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIMedium.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIMedium.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the next move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</li>
+<li><strong>currentPlayer</strong> (<em>String</em>) &#8211; The player who is making the next move (&#8216;X&#8217; or &#8216;O&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="AI._AIHard">
+<em class="property">class </em><code class="descclassname">AI.</code><code class="descname">_AIHard</code><a class="headerlink" href="#AI._AIHard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class which is the hardest AI. Shouldn&#8217;t be called directly, instead, call it via the class _AI which is
+called via the class Player. It has no initialization parameters as it is given that it should go via the _AI class.</p>
+<dl class="method">
+<dt id="AI._AIHard.getMove">
+<code class="descname">getMove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIHard.getMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value stored in self.move which is the next chosen move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The with the row and column for the next move. On the form of (rowIdx, colIdx)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIHard.getPossibleMoves">
+<code class="descname">getPossibleMoves</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIHard.getPossibleMoves" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The possible moves left on the board.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List[tuple]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIHard.isTerminalState">
+<code class="descname">isTerminalState</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIHard.isTerminalState" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The state of the current board.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIHard.nextMove">
+<code class="descname">nextMove</code><span class="sig-paren">(</span><em>board</em>, <em>currentPlayer</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIHard.nextMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the next move for the AI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</li>
+<li><strong>currentPlayer</strong> (<em>String</em>) &#8211; The player who is making the next move (&#8216;X&#8217; or &#8216;O&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AI._AIHard.score">
+<code class="descname">score</code><span class="sig-paren">(</span><em>board</em><span class="sig-paren">)</span><a class="headerlink" href="#AI._AIHard.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>The score to be retrieved for the minimax algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>board</strong> (<em>List[List[int]]</em>) &#8211; The 3x3 board from GameEngine.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The score used for the minimax algorithm</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to TicTacToe-GE&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Group K.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

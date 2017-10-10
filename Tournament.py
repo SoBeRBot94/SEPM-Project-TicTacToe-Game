@@ -96,7 +96,7 @@ class Tournament:
         self.runFinal()
 
     """
-        :returns: The name of the players entered by the user.
+        :returns: A list of the players names entered by the user.
         :rtype: [String]
     """
     def enterPlayers(self):

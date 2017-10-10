@@ -45,12 +45,12 @@ class Platform:
             if winner != 0:
                 print("The Winner is " + self.players[winner-1].name + "!")
                 print("Congratulations!")
-                winner = self.players[winner-1].name
+                winner = self.players[winner-1]
                 break
 
             if not self.gameState.anySpaceLeft():
                 print("The Game Ended in a Tie!")
-                break
+                return 'tie'
 
             if self.playerTurn == 1:
                 self.playerTurn = 2

@@ -138,14 +138,18 @@ class _AIHard:
         """
         for i in range(0, 3):
             if board[0][i] == board[1][i] == board[2][i]:
-                return board[0][i]
+                if board[0][i] != None: 
+                    return board[0][i]
             if board[i][0] == board[i][1] == board[i][2]:
-                return board[i][0]
+                if board[i][0] != None: 
+                    return board[i][0]
 
         if board[0][0] == board[1][1] == board[2][2]:
-            return board[0][0]
+            if board[0][0] != None: 
+                return board[0][0]
         if board[2][0] == board[1][1] == board[0][2]:
-            return board[2][0]
+            if board[2][0] != None: 
+                return board[2][0]
 
         if self.getPossibleMoves(board) == []:
             return 'tie'

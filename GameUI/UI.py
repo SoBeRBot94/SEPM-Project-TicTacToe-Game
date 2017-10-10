@@ -1,5 +1,6 @@
 from GameEngine.Player import Player
 from GamePlatform.Platform import Platform
+from GameUI.Tournament import Tournament
 from os import system
 
 class UI:
@@ -26,6 +27,10 @@ class UI:
         system("clear")
         p.startGame()
 
+    def initTournament(self):
+        t = Tournament()
+        t.startTournament()
+
     def initMenu(self):
         while True:
             print("Tic-Tac-Toe")
@@ -37,7 +42,7 @@ class UI:
             if choice == "1":
                 self.initGame()
             elif choice == "2":
-                pass
+                self.initTournament()
             elif choice.lower() == "q" or choice == "3":
                 self.exitGame()
             else:

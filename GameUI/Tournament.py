@@ -12,7 +12,7 @@ class Tournament:
 
     """
         Runs the quarterfinals and adds the winner to the semifinals.
-        If a game ends in a tie the winner is choosen at random with equal probability. 
+        If a game ends in a tie the winner is chosen at random with equal probability. 
     """
     def runQuarterfinals(self):
         # matches are querterFinals[0] against quarterFinals[1]
@@ -28,7 +28,7 @@ class Tournament:
     
     """
         Runs the semifinals and adds the winner to the final.
-        If a game ends in a tie the winner is choosen at random with equal probability. 
+        If a game ends in a tie the winner is chosen at random with equal probability. 
     """
     def runSemifinals(self):
         # start matches semiFinals[0] against semiFinals[1] ...
@@ -42,7 +42,7 @@ class Tournament:
     
     """
         Runs the final.
-        If a game ends in a tie the winner is choosen at random with equal probability. 
+        If a game ends in a tie the winner is chosen at random with equal probability. 
     """
     def runFinal(self):
         p = Platform(self.final[0], self.final[1])

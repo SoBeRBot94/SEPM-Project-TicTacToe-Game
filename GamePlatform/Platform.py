@@ -18,11 +18,10 @@ class Platform:
         self.printBoardHelp()
         print("To place a move, enter the number corresponding to the position on the board")
         print("Press q to quit the game\n")
-        time.sleep(3)
 
         while True:
+            self.gameState.printBoard()
             if self.players[self.playerTurn-1].typePlayer == "user":
-                self.gameState.printBoard()
                 inputMove = self.askForMove(self.players[self.playerTurn-1].name, "Choose your move: ")
                 if inputMove in ('q', 'Q', 'quit', 'Quit'):
                     print(self.players[self.playerTurn-1].name, "has quit the game")
@@ -39,10 +38,12 @@ class Platform:
                 #    break
                 self.gameState.playerMove(inputMove, self.playerTurn)
             else:
+                time.sleep(1)
                 self.gameState.AImove(self.players[self.playerTurn-1], self.playerTurn)
 
             winner = self.gameState.checkWinner()
             if winner != 0:
+                self.printBoardHelp()
                 print("The Winner is " + self.players[winner-1].name + "!")
                 print("Congratulations!")
                 winner = self.players[winner-1]

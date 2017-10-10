@@ -1,61 +1,84 @@
 from GameEngine.Player import Player
 from GamePlatform.Platform import Platform
-from random import shuffle
+import random 
 
 class Tournament: 
 
     def __init__(self):
-        self.quarterFinals = []
-        self.semiFinals = []
+        self.quarterfinals = []
+        self.semifinals = []
         self.final = [] 
         self.difficulties = ['easy', 'medium', 'hard']     
 
-    def startTournament(self):
-        # Entering players 
-        players = self.enterPlayers()
-        ais = self.enterAIs(8 - len(players))
-        # fill quarterFinals array with players and randomize the order
-        for player in players:
-            self.quarterFinals.append(Player(player, "user"))
-        for ai in ais: 
-            self.quarterFinals.append(Player(ai[0], "ai", ai[1]))
-        shuffle(self.quarterFinals)
-        print(self.quarterFinals)
-        # matches are querterFinals[0] against quarterFinals[1], que
-        # rterFinals[2] agains quarterFinals[3] and so on.
+    def runQuarterfinals(self):
+        # matches are querterFinals[0] against quarterFinals[1]
+        # qurterFinals[2] agains quarterFinals[3] and so on.
         for x in [0,2,4,6]:
-            p = Platform(self.quarterFinals[x], self.quarterFinals[x + 1])
+            p = Platform(self.quarterfinals[x], self.quarterfinals[x + 1])
             # collect the winner of each quarter final and semiFinals.append(winner)
             winner = p.startGame()
             if (winner == 'tie'):
-                # very unfair
-                self.semiFinals.append[self.quarterFinals[x]]
-            self.semiFinals.append(winner)
-
-        print(self.semiFinals)
-
-        # start matches semiFinals [0] against semiFinals[1] ...
+                self.semifinals.append[self.quarterfinals[x + random.randint(0,1)]]
+            else: 
+                self.semifinals.append(winner)
+    
+    def runSemifinals(self):
+        # start matches semiFinals[0] against semiFinals[1] ...
         for x in [0,2]:
-            p = Platform(self.semiFinals[x], self.semiFinals[x + 1])
+            p = Platform(self.semifinals[x], self.semifinals[x + 1])
             winner = p.startGame()
             if (winner == 'tie'):
-                # still very unfair
-                self.final.append[self.semiFinals[x]]
-            self.final.append(winner)
+                self.final.append[self.semifinals[x + random.randint(0,1)]]
+            else: 
+                self.final.append(winner)
     
-        print(self.final)
-        winner = 'tie'
-        while (winner == 'tie'):
-            p = Platform(self.final[0], self.final[1])
-            winner = p.startGame()
+    def runFinal(self):
+        p = Platform(self.final[0], self.final[1])
+        winner = p.startGame()
+        if (winner == 'tie'):
+            winner = final[random.randint(0, 1)]
+
         print("The winner is..." + winner.name + "!")
-        # ... 
-        # at last we have a winner!!!!!!! :)
+
+    def fillTournament(self): 
+        inp = input("Enter the number of players in the tournament ('4' or '8'): ")
+        while (inp not in ['4', '8']):
+            inp = input("Invalid input. Enter the number of players in the tournament ('4' or '8'): ")
+        self.numberOfPlayers = int(inp)
+        # Entering players 
+        players = self.enterPlayers()
+        ais = self.enterAIs(self.numberOfPlayers - len(players))
+        # fill quarterFinals array with players and randomize the order
+        if (self.numberOfPlayers == 8):
+            self.fillQuarterfinals(players, ais)
+        if (self.numberOfPlayers == 4):
+            self.fillSemifinals(players, ais)
+
+    def fillQuarterfinals(self, players, ais):
+        for player in players:
+            self.quarterfinals.append(Player(player, "user"))
+        for ai in ais: 
+            self.quarterfinals.append(Player(ai[0], "ai", ai[1]))
+        random.shuffle(self.quarterfinals)
+        
+    def fillSemifinals(self, players, ais):
+        for player in players:
+            self.semifinals.append(Player(player, "user"))
+        for ai in ais: 
+            self.semifinals.append(Player(ai[0], "ai", ai[1]))
+        random.shuffle(self.semifinals)
+
+    def startTournament(self):
+        self.fillTournament()
+        if (self.numberOfPlayers == 8):
+            self.runQuarterfinals()
+        self.runSemifinals()
+        self.runFinal()
 
     def enterPlayers(self):
         entersPlayers = True 
         players = []
-        while (entersPlayers and (len(players) < 8)):
+        while (entersPlayers and (len(players) < self.numberOfPlayers)):
             inp = input("Enter the name of a player or 'ai' to start entering ais: ")
             if not (inp.lower() == "ai"):
                 players.append(inp)

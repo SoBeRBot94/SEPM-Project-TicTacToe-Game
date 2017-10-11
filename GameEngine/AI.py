@@ -1,7 +1,7 @@
 import copy
 from collections import Counter
 import random
-
+from abc import ABC, abstractmethod
 
 class _AI(object):
     """Class which is used to initialize an AI type of player. Shouldn't be called directly, instead,
@@ -37,12 +37,89 @@ class _AI(object):
         return self._AI.getMove()
 
 
-class _AIHard:
+"""
+Start of module methods
+"""
+def emptyBoard():
     """
-    Class which is the hardest AI. Shouldn't be called directly, instead, call it via the class _AI which is
-    called via the class Player. It has no initialization parameters as it is given that it should go via the _AI class.
+        Creates an empty board.
+        :returns: an empty board
+        :rtype: [[String]]
     """
+    return [[None, None, None], [None, None, None], [None, None, None]]
 
+def isTerminalState(board):
+    """
+    :param board: The 3x3 board from GameEngine.
+    :type board: List[List[String]]
+    :returns: The state of the current board.
+    """
+    for i in range(3):
+        if board[0][i] == board[1][i] == board[2][i]:
+            if board[0][i] != None:
+                return board[0][i]
+        if board[i][0] == board[i][1] == board[i][2]:
+            if board[i][0] != None:
+                return board[i][0]
+
+    if board[0][0] == board[1][1] == board[2][2]:
+        if board[0][0] != None:
+            return board[0][0]
+    if board[2][0] == board[1][1] == board[0][2]:
+        if board[2][0] != None:
+            return board[2][0]
+
+    if getPossibleMoves(board) == []:
+        return 'tie'
+
+    return None
+
+def getPossibleMoves(board):
+    """
+    :param board: The 3x3 board from GameEngine.
+    :type board: List[List[String]]
+    :returns: The possible moves left on the board.
+    :rtype: List[tuple]
+    """
+    possibleMoves = []
+    for rowIdx, row in enumerate(board):
+        for colIdx, column in enumerate(row):
+            if column == None:
+                possibleMoves.append((rowIdx, colIdx))
+    return possibleMoves
+
+def nextState(board, move, player):
+    """
+    Creates a copy of the given board with the given move of the given player added.
+
+    :param board: The 3x3 board from GameEngine.
+    :type board: List[List[String]]
+    :param move: The move to be made.
+    :type move: (row, column)
+    :param player: The player making the move.
+    :type player: String
+    :returns: A copy of the given board with the given move of the given player added.
+    :rtype: List[List[String]]
+    """
+    if (board[move[0]][move[1]] == None):
+        # makes a copy of the board
+        boardCopy = copy.deepcopy(board)
+        # updates the copy with the given move
+        boardCopy[move[0]][move[1]] = player
+        return boardCopy
+
+        # illegal move should, throw error or something.
+    # returns a copy of the board
+    return copy.deepcopy(board)
+"""
+End of module methods
+"""
+
+class _AIAbstract(ABC):
+    """
+    The abstract class that provides the nextMove and getMove methods, as well as forcing the implementation
+    of the _nextMove method.
+    """
     def nextMove(self, board, currentPlayer):
         """
 
@@ -54,7 +131,11 @@ class _AIHard:
         :type currentPlayer: String
         """
         currentPlayer = 'O' if currentPlayer == 'X' else 'X'
-        self._optimalNextMove(board, currentPlayer)
+        self._nextMove(board, currentPlayer)
+
+    @abstractmethod
+    def _nextMove(self, board, currentPlayer):
+        pass
 
     def getMove(self):
         """
@@ -66,15 +147,13 @@ class _AIHard:
         """
         return self.move
 
-    def emptyBoard(self):
-        """
-            Creates an empty board.
-            :returns: an empty board
-            :rtype: [[String]]
-        """
-        return [[None, None, None], [None, None, None], [None, None, None]]
+class _AIHard(_AIAbstract):
+    """
+    Class which is the hardest AI. Shouldn't be called directly, instead, call it via the class _AI which is
+    called via the class Player. It has no initialization parameters as it is given that it should go via the _AI class.
+    """
 
-    def _optimalNextMove(self, board, currentPlayer):
+    def _nextMove(self, board, currentPlayer):
         """
 
         Minimax algorithm to find the optimal move for the AI.
@@ -88,18 +167,18 @@ class _AIHard:
         .. note:: The next move is stated here as well, but it is saved to self with the line self.move = move. This is
             because the algorithm works recursively and the value the algorithm follows is the score.
         """
-        if (self.isTerminalState(board)):
+        if (isTerminalState(board)):
             return self.score(board)
-        if (board == self.emptyBoard()):
+        if (board == emptyBoard()):
             self.move = (0, 0)
             return
-        possibleMoves = self.getPossibleMoves(board)
+        possibleMoves = getPossibleMoves(board)
         scores = []
         moves = []
         currentPlayer = 'O' if currentPlayer == 'X' else 'X'
         for move in possibleMoves:
-            possibleNewBoard = self.nextState(board, move, currentPlayer)
-            score = self._optimalNextMove(possibleNewBoard, currentPlayer)
+            possibleNewBoard = nextState(board, move, currentPlayer)
+            score = self._nextMove(possibleNewBoard, currentPlayer)
             moves.append(move)
             scores.append(score)
 
@@ -122,7 +201,7 @@ class _AIHard:
         :returns: The score used for the minimax algorithm
         :rtype: int
         """
-        winner = self.isTerminalState(board)
+        winner = isTerminalState(board)
         if winner == 'X':
             return 10
         elif winner == 'O':
@@ -130,92 +209,11 @@ class _AIHard:
         elif winner == 'tie':
             return 0
 
-    def isTerminalState(self, board):
-        """
-        :param board: The 3x3 board from GameEngine.
-        :type board: List[List[String]]
-        :returns: The state of the current board.
-        """
-        for i in range(0, 3):
-            if board[0][i] == board[1][i] == board[2][i]:
-                if board[0][i] != None: 
-                    return board[0][i]
-            if board[i][0] == board[i][1] == board[i][2]:
-                if board[i][0] != None: 
-                    return board[i][0]
-
-        if board[0][0] == board[1][1] == board[2][2]:
-            if board[0][0] != None: 
-                return board[0][0]
-        if board[2][0] == board[1][1] == board[0][2]:
-            if board[2][0] != None: 
-                return board[2][0]
-
-        if self.getPossibleMoves(board) == []:
-            return 'tie'
-
-        return None
-
-    def getPossibleMoves(self, board):
-        """
-        :param board: The 3x3 board from GameEngine.
-        :type board: List[List[String]]
-        :returns: The possible moves left on the board.
-        :rtype: List[tuple]
-        """
-        possibleMoves = []
-        for rowIdx, row in enumerate(board):
-            for colIdx, column in enumerate(row):
-                if column == None:
-                    possibleMoves.append((rowIdx, colIdx))
-        return possibleMoves
-
-    def nextState(self, board, move, player):
-        """
-        Creates a copy of the given board with the given move of the given player added.
-
-        :param board: The 3x3 board from GameEngine.
-        :type board: List[List[String]]
-        :param move: The move to be made.
-        :type move: (row, column)
-        :param player: The player making the move.
-        :type player: String
-        :returns: A copy of the given board with the given move of the given player added.
-        :rtype: List[List[String]]
-        """
-        if (board[move[0]][move[1]] == None):
-            # makes a copy of the board
-            boardCopy = copy.deepcopy(board)
-            # updates the copy with the given move
-            boardCopy[move[0]][move[1]] = player
-            return boardCopy
-
-            # illagal move should, throw error or something.
-        # returns a copy of the board
-        return copy.deepcopy(board)
-
-class _AIMedium:
-    def nextMove(self, board, currentPlayer):
-        """
-
-        Finds the next move for the AI.
-
-        :param board: The 3x3 board from GameEngine.
-        :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[String]]
-        :type currentPlayer: String
-        """
-        self._nextMove(board, currentPlayer)
-
-    def getMove(self):
-        """
-
-        Returns the value stored in self.move which is the next chosen move for the AI.
-
-        :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
-        :rtype: tuple
-        """
-        return self.move
+class _AIMedium(_AIAbstract):
+    """
+    Class which is the medium AI. Shouldn't be called directly, instead, call it via the class _AI which is
+    called via the class Player. It has no initialization parameters as it is given that it should go via the _AI class.
+    """
 
     def _nextMove(self, board, currentPlayer):
         """
@@ -258,46 +256,14 @@ class _AIMedium:
                 self.move = (0, idx)
             return
 
-        possibleMoves = self.getPossibleMoves(board)
+        possibleMoves = getPossibleMoves(board)
         self.move = random.SystemRandom().choice(possibleMoves)
 
-    def getPossibleMoves(self, board):
-        """
-        :param board: The 3x3 board from GameEngine.
-        :type board: List[List[String]]
-        :returns: The possible moves left on the board.
-        :rtype: List[tuple]
-        """
-        possibleMoves = []
-        for rowIdx, row in enumerate(board):
-            for colIdx, column in enumerate(row):
-                if column == None:
-                    possibleMoves.append((rowIdx, colIdx))
-        return possibleMoves
-
-
-class _AIEasy:
-    def nextMove(self, board, currentPlayer):
-        """
-
-        Finds the next move for the AI.
-
-        :param board: The 3x3 board from GameEngine.
-        :param currentPlayer: The player who is making the next move ('X' or 'O')
-        :type board: List[List[String]]
-        :type currentPlayer: String
-        """
-        self._nextMove(board, currentPlayer)
-
-    def getMove(self):
-        """
-
-        Returns the value stored in self.move which is the next chosen move for the AI.
-
-        :returns: The with the row and column for the next move. On the form of (rowIdx, colIdx)
-        :rtype: tuple
-        """
-        return self.move
+class _AIEasy(_AIAbstract):
+    """
+    Class which is the easiest AI. Shouldn't be called directly, instead, call it via the class _AI which is
+    called via the class Player. It has no initialization parameters as it is given that it should go via the _AI class.
+    """
 
     def _nextMove(self, board, currentPlayer):
         """
@@ -308,21 +274,5 @@ class _AIEasy:
         .. note:: The easy algorithm retrieves all the possible moves on the board and then chooses the next
             placement at random. The move is then saved to self.
         """
-        possibleMoves = self.getPossibleMoves(board)
+        possibleMoves = getPossibleMoves(board)
         self.move = random.SystemRandom().choice(possibleMoves)
-
-    def getPossibleMoves(self, board):
-        """
-        :param board: The 3x3 board from GameEngine.
-        :type board: List[List[String]]
-        :returns: The possible moves left on the board.
-        :rtype: List[tuple]
-        """
-        possibleMoves = []
-        for rowIdx, row in enumerate(board):
-            for colIdx, column in enumerate(row):
-                if column == None:
-                    possibleMoves.append((rowIdx, colIdx))
-        return possibleMoves
-
-

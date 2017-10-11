@@ -1,7 +1,6 @@
 from GamePlatform.Board import Board
 import time
 
-
 class Platform:
     def __init__(self, player1, player2):
 
@@ -43,15 +42,15 @@ class Platform:
 
             winner = self.gameState.checkWinner()
             if winner != 0:
-                self.printBoardHelp()
+                self.gameState.printBoard()
                 print("The Winner is " + self.players[winner-1].name + "!")
                 print("Congratulations!")
-                winner = self.players[winner-1]
+                winner = self.players[winner-1].name
                 break
 
             if not self.gameState.anySpaceLeft():
                 print("The Game Ended in a Tie!")
-                return 'tie'
+                break
 
             if self.playerTurn == 1:
                 self.playerTurn = 2

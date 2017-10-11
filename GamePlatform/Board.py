@@ -81,7 +81,7 @@ class Board:
             newMove = self.convertMove(AIplayer.nextMove(convertedBoard, turn))
             self.reConvertBoard(convertedBoard)
             self.playerMove(newMove, player)
-            return self.board
+            return newMove
         else:
             return 0
 

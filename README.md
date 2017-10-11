@@ -80,13 +80,13 @@ A TicTacToe Game Engine Wirtten In Python
 * Build The Image
 
 ```bash
-	docker build --tag tictactoe:final ./
+	docker build --rm --tag tictactoe:final ./
 ```
 
 * Run The Container With STDIN Enabled
 
 ```bash
-	docker run -i tictactoe:final
+	docker run --rm --interactive tictactoe:final
 ```
 
 **Enjoy Your Game**

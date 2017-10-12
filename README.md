@@ -89,4 +89,14 @@ A TicTacToe Game Engine Wirtten In Python
 	docker run --rm --interactive tictactoe:final
 ```
 
+### Bootstrap The Containers Using Python
+
+```bash
+	chmod u+x ./dockerTicTacToeDeployment.py
+```
+
+```bash
+	./dockerTicTacToeDeployment.py
+```
+
 **Enjoy Your Game**

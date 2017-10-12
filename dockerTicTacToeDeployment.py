@@ -9,7 +9,7 @@ import os
 
 dockerClient = docker.from_env()
 
-dockerClient.images.build(path="./", tag="tictactoe:test", rm=True)
+dockerClient.images.build(path="./", tag="tictactoe:final", rm=True)
 
-runContainer="/usr/bin/docker run --rm --interactive tictactoe:test"
+runContainer="/usr/bin/docker run --rm --interactive tictactoe:final"
 os.system(runContainer)

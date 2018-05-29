@@ -2,6 +2,9 @@
 ---
 A TicTacToe Game Engine Wirtten In Python
 
+
+[![license](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/SoBeRBot94/TicTacToe-GE/blob/master/LICENSE)
+
 ## Vagrant Development Environment
 
 ### Requirements

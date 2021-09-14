@@ -15,4 +15,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ github.actor }}/tictactoe-game:latest, ${{ github.actor }}/tictactoe-game:${{ github.run_number }}
+          tags: soberbot94/tictactoe-game:latest, soberbot94/tictactoe-game:${{ github.run_number }}

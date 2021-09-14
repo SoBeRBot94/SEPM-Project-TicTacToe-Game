@@ -29,3 +29,4 @@ jobs:
           registry: ghcr.io/SoBeRBot94
           username: SoBeRBot94
           password: ${{ secrets.ACCESS_TOKEN }}
+          tls-verify: false

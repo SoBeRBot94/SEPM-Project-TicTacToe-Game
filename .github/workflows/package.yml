@@ -7,26 +7,12 @@ on:
 
 jobs:
   build:
-    name: Build Image
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Buildah Build
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
+      - name: Build Image
+        uses: docker/build-push-action@v2
         with:
-          image: ${{ github.repository }}/tictactoe-game
-          tags: latest, ${{ github.run_number }}
-          dockerfiles: ./Dockerfile
-
-      - name: Publish Image
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
-          registry: ghcr.io/${{ github.actor }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          context: .
+          push: true
+          tags: ${{ github.actor }}/tictactoe-game:latest, ${{ github.actor }}/tictactoe-game:${{ github.run_number }}

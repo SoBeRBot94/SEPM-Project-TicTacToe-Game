@@ -24,7 +24,7 @@ jobs:
       - name: Publish Image
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: ${{ steps.build-image.outputs.image }}
+          image: tictactoe-game
           tags: ${{ steps.build-image.outputs.tags }}
           registry: ghcr.io/SoBeRBot94
           username: SoBeRBot94

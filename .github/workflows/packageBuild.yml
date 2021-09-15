@@ -15,14 +15,20 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - name: Update Environment Variables
+        id: update-env
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
+
       - name: Checkout The Repository
         uses: actions/checkout@v2
 
       - name: Buildah Build Image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${{ github.repository }}
-          tags: latest, ${{ github.run_number }}
+          image: ${{ steps.update-env.outputs.lowercase }}
+          tags: latest ${{ github.run_number }}
           dockerfiles: |
             ./Dockerfile
 

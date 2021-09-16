@@ -2,8 +2,8 @@
 ---
 A TicTacToe Game Engine Wirtten In Python
 
-[![license](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/SoBeRBot94/TicTacToe-GE/blob/master/LICENSE)
-
+[![license](https://img.shields.io/github/license/SoBeRBot94/SEPM-Project-TicTacToe-Game?style=for-the-badge)](https://github.com/SoBeRBot94/TicTacToe-GE/blob/master/LICENSE)
+![workflow](https://img.shields.io/github/workflow/status/SoBeRBot94/SEPM-Project-TicTacToe-Game/Container%20Image%20Build%20Workflow?style=for-the-badge)
 ## Demo
 [![Demo](https://asciinema.org/a/tL0corYizRRYRtMDI77pFFDVo.png)](https://asciinema.org/a/tL0corYizRRYRtMDI77pFFDVo)
 
